@@ -76,7 +76,7 @@ class AudioController {
       // Flip all cards before starting the game
       flipAllCardsAndFreeze(cards.length);
 
-      // audioController.startMusic(); // Add background music
+      audioController.startMusic(); // Add background music
     }
 
   };
@@ -110,11 +110,40 @@ class AudioController {
         cards.forEach(function (card) {
           card.classList.toggle('clicked');
           card.addEventListener('click', handleFlipCard);
+          
+          // After freezing, start the countdown timer
+          countdownTimer = startCountdown(countdownDuration);
         });
       }, freezeDurationPerCard); // Adjust the delay as needed to control how long the cards stay frozen
     }, totalFlipTime);
   }
 
+  var countdownTimer;
+  var countdownDuration = 20; // Set the countdown duration in seconds
+
+  function startCountdown(duration) {
+    var timer = duration;
+    var countdownElement = document.getElementById('countdown'); // Replace 'countdown' with the ID of your countdown display element
+  
+    var countdownInterval = setInterval(function () {
+      countdownElement.textContent = timer + 's';
+  
+      if (timer <= 0) {
+        clearInterval(countdownInterval); // Stop the countdown timer
+        // Check if the game is over
+        if (!$.isGameOver) {
+          $.isGameOver = true;
+          var message = getEndGameMessage(); // Call a function to handle the game over state
+          document.getElementById('memory--end-game-message').textContent = message;
+          document.getElementById("memory--end-game-modal").classList.toggle('show');
+        }
+      }
+  
+      timer--;
+    }, 1000); // Update the countdown every 1 second (1000 milliseconds)
+  
+    return countdownInterval;
+  }
 
   // Handle clicking on card
   var handleFlipCard = function (event) {
