@@ -1,2 +1,2 @@
 # Memory Matching Game
-HTML5, CSS3 and Javascript is used in this game.
+HTML5, CSS3 and Javascript is used in this game with webcam as a background.
