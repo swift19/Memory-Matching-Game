@@ -1,4 +1,40 @@
+// Define the AudioController class
+class AudioController {
+  constructor() {
+    this.bgMusic = new Audio('Assets/Audio/bg-music.wav');
+    this.flipSound = new Audio('Assets/Audio/flip.wav');
+    this.matchSound = new Audio('Assets/Audio/match.wav');
+    this.victorySound = new Audio('Assets/Audio/victory.wav');
+    this.gameOverSound = new Audio('Assets/Audio/gameOver.wav');
+    this.bgMusic.volume = 0.5;
+    this.bgMusic.loop = true;
+  }
+  startMusic() {
+    this.bgMusic.play();
+  }
+  stopMusic() {
+    this.bgMusic.pause();
+    this.bgMusic.currentTime = 0;
+  }
+  flip() {
+    this.flipSound.play();
+  }
+  match() {
+    this.matchSound.play();
+  }
+  victory() {
+    this.stopMusic();
+    this.victorySound.play();
+  }
+  gameOver() {
+    this.stopMusic();
+    this.gameOverSound.play();
+  }
+}
+
+
 (function($) {
+  var audioController = new AudioController();
 
   /************ Start hard coded settings ******************/
 
@@ -36,10 +72,49 @@
       document.getElementById('memory--end-game-message').innerText = "";
       document.getElementById('memory--end-game-score').innerText = "";
       buildLayout($.cards, $.settings.rows, $.settings.columns);
+ 
+      // Flip all cards before starting the game
+      flipAllCardsAndFreeze(cards.length);
+
+      // audioController.startMusic(); // Add background music
     }
 
   };
   reset.addEventListener('click', handleSettingsSubmission);
+
+  // Function to flip all cards and freeze them for 20 seconds
+  function flipAllCardsAndFreeze(cards) {
+    var cards = document.querySelectorAll('.flip-container');
+    var flipDuration = 150; // Duration (in milliseconds) for flipping each card
+    var freezeDurationPerCard = 3000; // Duration (in milliseconds) for freezing each card
+    var totalFlipTime = cards.length * flipDuration; // Total time required for flipping all cards
+
+    
+    // Flip all cards
+    cards.forEach(function (card, index) {
+      setTimeout(function () {
+        card.classList.toggle('clicked');
+        audioController.flip(); // Play flip sound
+      }, index * flipDuration); // Delay between flipping each card (adjust the delay as needed)
+    });
+
+    // Freeze the cards
+    setTimeout(function () {
+      // Freeze the cards by removing the click event listener
+      cards.forEach(function (card) {
+        card.removeEventListener('click', handleFlipCard);
+      });
+
+      // After freezing, flip the cards back to their normal state
+      setTimeout(function () {
+        cards.forEach(function (card) {
+          card.classList.toggle('clicked');
+          card.addEventListener('click', handleFlipCard);
+        });
+      }, freezeDurationPerCard); // Adjust the delay as needed to control how long the cards stay frozen
+    }, totalFlipTime);
+  }
+
 
   // Handle clicking on card
   var handleFlipCard = function (event) {
@@ -51,6 +126,11 @@
 
     if (status.code != 0 ) {
       this.classList.toggle('clicked');
+      audioController.flip(); // Play flip sound
+    }
+
+    if (status.code == 2 ) {
+      audioController.match(); // Play match sound
     }
 
     if (status.code == 3 ) {
@@ -78,15 +158,19 @@
 
     if (score == 100) {
       message = "Amazing job!"
+      audioController.victory();
     }
     else if (score >= 70 ) {
       message = "Great job!"
+      audioController.victory();
     }
     else if (score >= 50) {
       message = "Great job!"
+      audioController.victory();
     }
     else {
       message = "You can do better.";
+      audioController.gameOver();
     }
 
     return message;
