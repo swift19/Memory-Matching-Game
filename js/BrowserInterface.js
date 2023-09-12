@@ -290,6 +290,40 @@ class AudioController {
     return flipContainer;
   };
 
+  // Add a variable to keep track of the currently active camera
+  let activeCamera = 'user';
+
+  // Function to toggle between user and environment cameras
+  function toggleCamera() {
+    const video = document.getElementById('webcam');
+    const constraints =
+      activeCamera === 'user'
+        ? { video: { facingMode: 'environment' } }
+        : { video: { facingMode: 'user' } };
+
+    // Stop the current stream
+    const currentStream = video.srcObject;
+    if (currentStream) {
+      const tracks = currentStream.getTracks();
+      tracks.forEach((track) => track.stop());
+    }
+
+    // Get a new stream with the updated constraints
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then((stream) => {
+        video.srcObject = stream;
+        activeCamera = activeCamera === 'user' ? 'environment' : 'user';
+      })
+      .catch((error) => {
+        console.error('Error accessing camera:', error);
+      });
+  }
+
+  // Add a click event listener to the button
+  document.getElementById('toggle-camera').addEventListener('click', toggleCamera);
+
+
   async function startWebcam() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });

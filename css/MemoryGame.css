@@ -274,6 +274,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+#toggle-camera {
+  padding: 5px;
+  background-color: #ccc; /* Change the background color as desired */
+  color: #fff; /* Text color */
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 6;
+}
+
+#toggle-camera:hover {
+  background-color: #2980b9; /* Change the hover background color */
+}
+
+
 .back.card-1 {
   background-image: url(../images/fruits/apple.jpg);
 }
