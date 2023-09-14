@@ -9,11 +9,17 @@ class AudioController {
     // this.gameOverSound = new Audio('Assets/Audio/gameOver.wav');
 
     // From GITHUB PAGES WEBSITE
-    this.bgMusic = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/bg-music.wav');
-    this.flipSound = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/flip.wav');
-    this.matchSound = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/match.wav');
-    this.victorySound = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/victory.wav');
-    this.gameOverSound = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/gameOver.wav');
+    // this.bgMusic = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/bg-music.wav');
+    // this.flipSound = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/flip.wav');
+    // this.matchSound = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/match.wav');
+    // this.victorySound = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/victory.wav');
+    // this.gameOverSound = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/gameOver.wav');
+
+    this.bgMusic = new Audio('assets/Audio/bg-music.wav');
+    this.flipSound = new Audio('assets/Audio/flip.wav');
+    this.matchSound = new Audio('assets/Audio/match.wav');
+    this.victorySound = new Audio('assets/Audio/victory.wav');
+    this.gameOverSound = new Audio('assets/Audio/gameOver.wav');
     
     this.bgMusic.volume = 0.5;
     this.bgMusic.loop = true;
