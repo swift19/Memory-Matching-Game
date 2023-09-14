@@ -1,11 +1,20 @@
 // Define the AudioController class
 class AudioController {
   constructor() {
-    this.bgMusic = new Audio('Assets/Audio/bg-music.mp3');
-    this.flipSound = new Audio('Assets/Audio/flip.wav');
-    this.matchSound = new Audio('Assets/Audio/match.wav');
-    this.victorySound = new Audio('Assets/Audio/victory.wav');
-    this.gameOverSound = new Audio('Assets/Audio/gameOver.wav');
+    // Local only
+    // this.bgMusic = new Audio('Assets/Audio/bg-music.mp3');
+    // this.flipSound = new Audio('Assets/Audio/flip.wav');
+    // this.matchSound = new Audio('Assets/Audio/match.wav');
+    // this.victorySound = new Audio('Assets/Audio/victory.wav');
+    // this.gameOverSound = new Audio('Assets/Audio/gameOver.wav');
+
+    // From GITHUB PAGES WEBSITE
+    this.bgMusic = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/bg-music.wav');
+    this.flipSound = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/flip.wav');
+    this.matchSound = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/match.wav');
+    this.victorySound = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/victory.wav');
+    this.gameOverSound = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/gameOver.wav');
+    
     this.bgMusic.volume = 0.5;
     this.bgMusic.loop = true;
     this.isMuted = false; // Add a property to track mute state
@@ -353,7 +362,7 @@ class AudioController {
 
   var muteButton = document.getElementById('mute-audio');
   muteButton.addEventListener('click', function() {
-    audioController.stopMusic(); // for mobile only
+    // audioController.stopMusic(); // for mobile only
     audioController.mute(); // Mute audio
     muteButton.style.display = 'none'; // Hide the mute button
     unmuteButton.style.display = 'inline-block'; // Show the unmute button
@@ -362,7 +371,7 @@ class AudioController {
   // Add event listener to the unmute button
   var unmuteButton = document.getElementById('unmute-audio');
   unmuteButton.addEventListener('click', function() {
-    audioController.startMusic(); // for mobile only
+    // audioController.startMusic(); // for mobile only
     audioController.unmute(); // Unmute audio
     muteButton.style.display = 'inline-block'; // Show the mute button
     unmuteButton.style.display = 'none'; // Hide the unmute button
