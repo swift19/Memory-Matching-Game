@@ -4,7 +4,7 @@ class AudioController {
     this.bgMusic = new Audio('Assets/Audio/bg-music.wav');
     this.flipSound = new Audio('Assets/Audio/flip.wav');
     this.matchSound = new Audio('Assets/Audio/match.wav');
-    this.victorySound = new Audio('Assets/Audio/victory.mp3');
+    this.victorySound = new Audio('Assets/Audio/victory.wav');
     this.gameOverSound = new Audio('Assets/Audio/gameOver.wav');
     this.bgMusic.volume = 0.5;
     this.bgMusic.loop = true;
@@ -60,6 +60,8 @@ class AudioController {
   var reset = document.getElementById('memory--settings-reset');
   var handleSettingsSubmission = function (event) {
     event.preventDefault();
+
+    countdownTimer = startCountdown(0, true);
 
     var selectWidget = document.getElementById("memory--settings-grid").valueOf();
     var grid = selectWidget.options[selectWidget.selectedIndex].value;
@@ -120,29 +122,35 @@ class AudioController {
 
   var countdownTimer;
   var countdownDuration = 20; // Set the countdown duration in seconds
+  var countdownInterval;
 
-  function startCountdown(duration) {
+  function startCountdown(duration, isButtonClicked) {
     var timer = duration;
     var countdownElement = document.getElementById('countdown'); // Replace 'countdown' with the ID of your countdown display element
-  
-    var countdownInterval = setInterval(function () {
-      countdownElement.textContent = timer + 's';
-  
-      if (timer <= 0) {
-        clearInterval(countdownInterval); // Stop the countdown timer
-        // Check if the game is over
-        if (!$.isGameOver) {
-          $.isGameOver = true;
-          var message = getEndGameMessage(); // Call a function to handle the game over state
-          document.getElementById('memory--end-game-message').textContent = message;
-          document.getElementById("memory--end-game-modal").classList.toggle('show');
-        }
+
+    if (isButtonClicked) {
+      clearInterval(countdownInterval);
+      countdownInterval = null; // Set the interval variable to null to indicate that it's stopped
+    } else {
+      if (countdownInterval === null) { // Check if the timer is not already running
+        countdownInterval = setInterval(function () {
+          countdownElement.textContent = timer + 's';
+
+          if (timer <= 0) {
+            clearInterval(countdownInterval);
+            // Check if the game is over
+            if (!$.isGameOver) {
+              $.isGameOver = true;
+              var message = getEndGameMessage(); // Call a function to handle the game over state
+              document.getElementById('memory--end-game-message').textContent = message;
+              document.getElementById("memory--end-game-modal").classList.toggle('show');
+            }
+          }
+
+          timer--;
+        }, 1000); // Update the countdown every 1 second (1000 milliseconds)
       }
-  
-      timer--;
-    }, 1000); // Update the countdown every 1 second (1000 milliseconds)
-  
-    return countdownInterval;
+    }
   }
 
   // Handle clicking on card
