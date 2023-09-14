@@ -353,6 +353,7 @@ class AudioController {
 
   var muteButton = document.getElementById('mute-audio');
   muteButton.addEventListener('click', function() {
+    audioController.stopMusic(); // for mobile only
     audioController.mute(); // Mute audio
     muteButton.style.display = 'none'; // Hide the mute button
     unmuteButton.style.display = 'inline-block'; // Show the unmute button
@@ -361,6 +362,7 @@ class AudioController {
   // Add event listener to the unmute button
   var unmuteButton = document.getElementById('unmute-audio');
   unmuteButton.addEventListener('click', function() {
+    audioController.startMusic(); // for mobile only
     audioController.unmute(); // Unmute audio
     muteButton.style.display = 'inline-block'; // Show the mute button
     unmuteButton.style.display = 'none'; // Hide the unmute button
