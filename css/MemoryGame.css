@@ -39,6 +39,17 @@ body {
   vertical-align: middle;
 }
 
+.lower-left{
+  position: absolute;
+  bottom: 10px;
+}
+
+.transparent-button {
+  background-color: transparent;
+  border: none; 
+  color: white;
+}
+
 #qr-code {
   position: absolute;
   bottom: 10px;

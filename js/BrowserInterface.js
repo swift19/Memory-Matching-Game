@@ -8,6 +8,7 @@ class AudioController {
     this.gameOverSound = new Audio('Assets/Audio/gameOver.wav');
     this.bgMusic.volume = 0.5;
     this.bgMusic.loop = true;
+    this.isMuted = false; // Add a property to track mute state
   }
   startMusic() {
     this.bgMusic.play();
@@ -29,6 +30,24 @@ class AudioController {
   gameOver() {
     this.stopMusic();
     this.gameOverSound.play();
+  }
+
+  mute() {
+    this.isMuted = true;
+    this.bgMusic.muted = true;
+    this.flipSound.muted = true;
+    this.matchSound.muted = true;
+    this.victorySound.muted = true;
+    this.gameOverSound.muted = true;
+  }
+
+  unmute() {
+    this.isMuted = false;
+    this.bgMusic.muted = false;
+    this.flipSound.muted = false;
+    this.matchSound.muted = false;
+    this.victorySound.muted = false;
+    this.gameOverSound.muted = false;
   }
 }
 
@@ -331,6 +350,21 @@ class AudioController {
   // Add a click event listener to the button
   document.getElementById('toggle-camera').addEventListener('click', toggleCamera);
 
+
+  var muteButton = document.getElementById('mute-audio');
+  muteButton.addEventListener('click', function() {
+    audioController.mute(); // Mute audio
+    muteButton.style.display = 'none'; // Hide the mute button
+    unmuteButton.style.display = 'inline-block'; // Show the unmute button
+  });
+
+  // Add event listener to the unmute button
+  var unmuteButton = document.getElementById('unmute-audio');
+  unmuteButton.addEventListener('click', function() {
+    audioController.unmute(); // Unmute audio
+    muteButton.style.display = 'inline-block'; // Show the mute button
+    unmuteButton.style.display = 'none'; // Hide the unmute button
+  });
 
   async function startWebcam() {
     try {
