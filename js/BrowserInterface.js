@@ -92,13 +92,15 @@ class AudioController {
 
   // Handle settings form submission
   var reset = document.getElementById('memory--settings-reset');
+  var defaultDificulty = "2x3";
   var handleSettingsSubmission = function (event) {
     event.preventDefault();
 
     countdownTimer = startCountdown(0, true);
 
-    var selectWidget = document.getElementById("memory--settings-grid").valueOf();
-    var grid = selectWidget.options[selectWidget.selectedIndex].value;
+    // var selectWidget = document.getElementById("memory--settings-grid").valueOf();
+
+    var grid = defaultDificulty;
     var gridValues = grid.split('x');
     var cards = $.initialize(Number(gridValues[0]), Number(gridValues[1]), imagesAvailable);
 
@@ -214,15 +216,46 @@ class AudioController {
     else if (status.code == 4) {
       var score = parseInt((($.attempts - $.mistakes) / $.attempts) * 100, 10);
       var message = getEndGameMessage(score);
-
-      document.getElementById('memory--end-game-message').textContent = message;
+      var levelChecker = level + 1;
+      document.getElementById('memory--end-game-message').textContent = levelChecker === 5 ? "Congratulations! You finished the game!" : message;
       document.getElementById('memory--end-game-score').textContent =
           'Score: ' + score + ' / 100';
 
       document.getElementById("memory--end-game-modal").classList.toggle('show');
-    }
 
+      if (levelChecker < 5){
+        if (message !== "You can do better. Restart the game."){
+          setTimeout(function() {
+            nextLevel();
+          }, 3000); 
+        }
+      }
+    }
   };
+
+  let level = 1;
+  var gameLevel = ["3x4", "4x5", "5x6", "6x7"];
+  var nextLevel = function () {
+    level ++;
+
+    countdownTimer = startCountdown(0, true);
+
+    var grid = gameLevel[level - 1];
+    var gridValues = grid.split('x');
+
+    var cards = $.initialize(Number(gridValues[0]), Number(gridValues[1]), imagesAvailable);
+
+    if (cards) {
+      document.getElementById('memory--settings-modal').classList.remove('show');
+      document.getElementById('memory--end-game-modal').classList.remove('show');
+      document.getElementById('memory--end-game-message').innerText = "";
+      document.getElementById('memory--end-game-score').innerText = "";
+      buildLayout($.cards, $.settings.rows, $.settings.columns);
+  
+      // Flip all cards before starting the game
+      flipAllCardsAndFreeze(cards.length);
+    }
+  }
 
   var getEndGameMessage = function(score) {
     var message = "";
@@ -240,7 +273,7 @@ class AudioController {
       audioController.victory();
     }
     else {
-      message = "You can do better.";
+      message = "You can do better. Please restart the game.";
       audioController.gameOver();
     }
 
