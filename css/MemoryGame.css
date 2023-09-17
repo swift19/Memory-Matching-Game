@@ -253,12 +253,12 @@ body {
   -ms-transform: rotateY(0deg);
   -o-transform: rotateY(0deg);
   transform: rotateY(0deg);
-  background-color: #e12d00;
+  /* background-color: #e12d00; */
   border-radius: 5%;
-  background-image: url(../images/card.svg);
+  background-image: url(../images/aztec-cards.jpeg);
   background-position:50% 50%;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 
 /* back, initially hidden pane */
@@ -393,6 +393,79 @@ body {
   background-image: url(../images/donut/donut6.jpg);
 }
 
+.modal-splash {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 999;
+}
+
+#modal-video {
+  width: 100%;
+  height: 100%;
+}
+
+/* Define the bounce animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+  }
+  40% {
+      transform: translateY(-20px);
+  }
+  60% {
+      transform: translateY(-10px);
+  }
+}
+
+/* Define the heartbeat animation */
+@keyframes heartbeat {
+  0% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.1);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+
+@keyframes heartbeat2
+{
+  0%
+  {
+    transform: scale( .90 );
+  }
+  40%
+  {
+    transform: scale( 1.1 );
+  }
+  80%
+  {
+    transform: scale( .90 );
+  }
+  100%
+  {
+    transform: scale( 1 );
+  }
+}
+
+#drawing_canvas {
+  position: absolute;
+  margin: auto;
+  width: 512px;
+  height: 350px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* z-index: 100; */
+}
 /** Matching Cards **/
 /**
  * If you wish to have custom matching images, you can do so
