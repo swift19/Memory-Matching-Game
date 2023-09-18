@@ -130,7 +130,7 @@ class AudioController {
 
       audioController.startMusic(); // Add background music
 
-      level = 1;
+      level = 0;
     }
 
   };
@@ -269,6 +269,7 @@ class AudioController {
     countdownTimer = startCountdown(0, true);
 
     var grid = gameLevel[level - 1];
+    console.log("grid level",grid)
     var gridValues = grid.split('x');
 
     var cards = $.initialize(Number(gridValues[0]), Number(gridValues[1]), imagesAvailable);
