@@ -103,7 +103,8 @@ body {
   width:50%;
 }
 .memory--app-name {
-  color:#ccc;
+  /* color:#ccc; */
+  color: white;
   font-size:26px;
   margin:0;
   /* padding:1px 4px; */
@@ -287,7 +288,7 @@ body {
 
 #toggle-camera {
   padding: 5px;
-  background-color: #ccc; /* Change the background color as desired */
+  background-color:transparent; /* Change the background color as desired */
   color: #fff; /* Text color */
   border: none;
   border-radius: 50px;
