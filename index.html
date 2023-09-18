@@ -6,25 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="js/MemoryGame.js" type="text/javascript"></script>
     <script src="js/Card.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     <link href="css/MemoryGame.css" type="text/css" rel="stylesheet" />
   </head>
   <body>
-    <section id="memory--settings-modal" class="valign-table modal show">
-      <div class="valign-cell">
-        <form>
-          <h2 class="memory--settings-label">Difficulty level:</h2>
-          <select id="memory--settings-grid">
-            <option value="2x3" selected>Easy</option>
-            <option value="3x4">Medium</option>
-            <option value="4x5">Hard</option>
-            <option value="5x6">Don't do it!</option>
-            <option value="6x7">Your Insane!</option>
-          </select>
-          <input id="memory--settings-reset" type="submit" value="Start New Game" />
-          <input id="memory--settings-reset" type="submit" value="Tutorial" />
-        </form>
-      </div>
-    </section>
+    <div id="myModal" class="modal-splash">
+      
+      <video id="modal-video" autoplay loop muted>
+          <source src="assets/MP4/splashscreen.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+    </div>
+    <canvas id="drawing_canvas"></canvas>
+    <div id="main-content">
+      <canvas id="drawing_canvas"></canvas>
+      <section id="memory--settings-modal" class="valign-table modal show">
+        <div class="valign-cell">
+          <form>
+            <!-- <h2 class="memory--settings-label">Difficulty level:</h2> -->
+            <!-- <select id="memory--settings-grid">
+              <option value="2x3" selected>Easy</option>
+              <option value="3x4">Medium</option>
+              <option value="4x5">Hard</option>
+              <option value="5x6">Don't do it!</option>
+              <option value="6x7">Your Insane!</option>
+            </select> -->
+            <input id="memory--settings-reset" type="submit" value="Start New Game" />
+            <input id="memory--settings-reset" type="submit" value="Tutorial" />
+          </form>
+        </div>
+      </section>
+    </div>
+    
     <section id="memory--end-game-modal" class="valign-table modal">
       <div class="valign-cell">
         <div class="wrapper">
@@ -39,7 +52,7 @@
         <div class="right">
           <a href="#settings">
             <button id="toggle-camera">🔄</button>
-            <img id="memory--settings-icon" src="images/gear.png" />
+            <img id="memory--settings-icon" src="images/home-icon.png" />
           </a>
         </div>
       </div>
