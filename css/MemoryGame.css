@@ -42,12 +42,15 @@ body {
 .lower-left{
   position: absolute;
   bottom: 10px;
+  padding: 5px;
+  background-color: white;
+  z-index: 4;
 }
 
 .transparent-button {
   background-color: transparent;
   border: none; 
-  color: white;
+  color: red;
 }
 
 #qr-code {
@@ -56,6 +59,7 @@ body {
   right: 10px; 
   width: 80px;
   height: 80px; 
+  z-index: 4;
 }
 
 #video-container {
@@ -75,15 +79,20 @@ body {
 
 #memory--app-container {
   position: relative; 
-  background-color: #0061a8;
+  /* background-color: #0061a8; */
   width: 100%;
   height: 90%;
   overflow: hidden; 
+
+  background-image: url('./../images/kids-wallpaper.jpg');
+  background-size: cover; 
+  background-repeat: no-repeat;
 }
 
 .memory--menu-bar {
   width:100%;
-  background-color: #222;
+  /* background-color: #222; */
+  background-image: url('./../images/natural-wood-header.jpg');
   height:10%;
   display:table;
 }
@@ -139,8 +148,11 @@ body {
 }
 
 #memory--settings-modal {
-  background-color: rgba(0, 0, 0, .86);
-  z-index: 4;
+ /* background-color: rgba(0, 0, 0, .86);  */
+  background-image: url('./../images/kids-wallpaper.jpg');
+  background-size: cover; /* Adjust background image size as needed */
+  background-repeat: no-repeat;
+  
 }
 #memory--settings-modal form {
   min-width:240px;
@@ -159,8 +171,10 @@ body {
   width:100%;
   margin-bottom:16px;
   font-size:18px;
-  background:transparent;
-  color:#ccc;
+  /* background:transparent;
+  color:#ccc; */
+  background: white;
+  color: black;
   height:50px;
   text-align: center;
 }
@@ -284,6 +298,9 @@ body {
   color: red;
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 #toggle-camera {
@@ -408,6 +425,7 @@ body {
 #modal-video {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 /* Define the bounce animation */
@@ -459,13 +477,16 @@ body {
 #drawing_canvas {
   position: absolute;
   margin: auto;
-  width: 512px;
-  height: 350px;
+  width: auto;
+  height: auto;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  /* z-index: 100; */
+  @media (max-width: 512px) {
+    width: 100%;
+    height: auto;
+  }
 }
 /** Matching Cards **/
 /**
