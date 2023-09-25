@@ -128,8 +128,6 @@ class AudioController {
       // Flip all cards before starting the game
       flipAllCardsAndFreeze(cards.length);
 
-      audioController.startMusic(); // Add background music
-
       level = 0;
     }
 
@@ -138,6 +136,7 @@ class AudioController {
 
   // Function to flip all cards and freeze them for 20 seconds
   function flipAllCardsAndFreeze(cards) {
+    audioController.startMusic(); // Add background music
     var cards = document.querySelectorAll('.flip-container');
     var flipDuration = 150; // Duration (in milliseconds) for flipping each card
     var freezeDurationPerCard = 3000; // Duration (in milliseconds) for freezing each card
