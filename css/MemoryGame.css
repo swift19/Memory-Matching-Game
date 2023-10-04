@@ -352,6 +352,14 @@ body {
   align-items: center;
 }
 
+.try-again{
+  display: none;
+  height: 40px;
+  width: 200px;
+  border-radius: 50px;
+  animation: heartbeat 1.5s infinite;
+}
+
 .back.card-1 {
   background-image: url(../images/fruits/apple.gif);
 }
