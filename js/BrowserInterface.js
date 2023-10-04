@@ -129,6 +129,7 @@ class AudioController {
       flipAllCardsAndFreeze(cards.length);
 
       level = 0;
+      document.getElementById('lvl').innerText = level + 1;
     }
 
   };
@@ -282,6 +283,7 @@ class AudioController {
   
       // Flip all cards before starting the game
       flipAllCardsAndFreeze(cards.length);
+      document.getElementById('lvl').innerText = level+1;
     }
   }
 

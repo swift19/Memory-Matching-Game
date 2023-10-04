@@ -104,13 +104,21 @@ body {
 .memory--menu-bar .left {
   text-align: left;
   float:left;
-  width:50%;
+  width:80%;
 }
 .memory--menu-bar .right {
   text-align: right;
   float:right;
-  width:50%;
+  width:20%;
 }
+
+@font-face {
+  font-family: 'samurai'; 
+  src: url('../assets/fonts/SamuraiBlast-8MnyD.otf') format('opentype');
+  font-weight: normal; /* or bold if your font is bold */
+  font-style: normal; /* or italic if your font is italic */
+}
+
 .memory--app-name {
   /* color:#ccc; */
   color: white;
@@ -119,12 +127,16 @@ body {
   /* padding:1px 4px; */
   padding: 10px 12px;
   text-transform: uppercase;
-  font-family: "Courier New";
+  font-family: "samurai";
   letter-spacing: 2px;
+  text-shadow: 2px 2px black,
+               3px 3px black,
+               4px 4px black,
+               5px 5px black;
 }
 @media screen and (max-width: 480px) {
   .memory--app-name {
-    font-size:16px;
+    font-size:20px;
   }
 }
 
@@ -177,6 +189,8 @@ body {
   color: black;
   height:50px;
   text-align: center;
+  font-family: 'samurai';
+  animation: heartbeat 1.5s infinite;
 }
 
 #memory--settings-grid option {
@@ -283,7 +297,8 @@ body {
   -ms-transform: rotateY(-180deg);
   -o-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: transparent;
   border-radius: 5%;
   background-position:50% 50%;
   background-repeat: no-repeat;
@@ -294,6 +309,19 @@ body {
   position: absolute;
   top: 10px;
   left: 10px;
+  z-index: 5;
+  color: red;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+#level {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   z-index: 5;
   color: red;
   font-size: 20px;
@@ -320,49 +348,49 @@ body {
 
 
 .back.card-1 {
-  background-image: url(../images/fruits/apple.jpg);
+  background-image: url(../images/fruits/apple.gif);
 }
 .back.card-2 {
-  background-image: url(../images/fruits/fig.jpg);
+  background-image: url(../images/fruits/fig.gif);
 }
 .back.card-3 {
-  background-image: url(../images/fruits/grape.jpg);
+  background-image: url(../images/fruits/grape.gif);
 }
 .back.card-4 {
-  background-image: url(../images/fruits/kiwi.jpg);
+  background-image: url(../images/fruits/kiwi.gif);
 }
 .back.card-5 {
-  background-image: url(../images/fruits/lemon.jpg);
+  background-image: url(../images/fruits/lemon.gif);
 }
 .back.card-6 {
-  background-image: url(../images/fruits/lime.jpg);
+  background-image: url(../images/fruits/lime.gif);
 }
 .back.card-7 {
-  background-image: url(../images/fruits/mango.jpg);
+  background-image: url(../images/fruits/mango.gif);
 }
 .back.card-8 {
-  background-image: url(../images/fruits/melon.jpg);
+  background-image: url(../images/fruits/melon.gif);
 }
 .back.card-9 {
-  background-image: url(../images/fruits/orange.jpg);
+  background-image: url(../images/fruits/orange.gif);
 }
 .back.card-10 {
-  background-image: url(../images/fruits/peach.jpg);
+  background-image: url(../images/fruits/peach.gif);
 }
 .back.card-11 {
-  background-image: url(../images/fruits/pear.jpg);
+  background-image: url(../images/fruits/pear.gif);
 }
 .back.card-12 {
-  background-image: url(../images/fruits/pinapple.jpg);
+  background-image: url(../images/fruits/pinapple.gif);
 }
 .back.card-13 {
-  background-image: url(../images/fruits/plum.jpg);
+  background-image: url(../images/fruits/plum.gif);
 }
 .back.card-14 {
-  background-image: url(../images/fruits/raspberry.jpg);
+  background-image: url(../images/fruits/raspberry.gif);
 }
 .back.card-15 {
-  background-image: url(../images/fruits/strawberry.jpg);
+  background-image: url(../images/fruits/strawberry.gif);
 }
 
 .back.card-16 {
