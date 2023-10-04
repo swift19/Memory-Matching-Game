@@ -211,6 +211,19 @@ body {
   animation: heartbeat 1.5s infinite;
 }
 
+#memory--settings-tutorial {
+  width:100%;
+  margin-bottom:16px;
+  font-size:18px;
+  background: white;
+  color: black;
+  height:50px;
+  text-align: center;
+  font-family: 'samurai';
+  border-radius:5px;
+  border:2px solid #ccc;
+  cursor: pointer;
+}
 #memory--settings-grid option {
   padding-top:5px;
   padding-bottom:5px;
