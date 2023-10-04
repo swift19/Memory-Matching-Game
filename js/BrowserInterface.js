@@ -270,6 +270,13 @@ class AudioController {
     var originalImageSrc = monkeyImage.src;
 
     if (status.code == 2 ) {
+      // fall banana
+      const confs = document.getElementById("banana_canvas");
+      confs.style.display = 'block';
+      setTimeout(function() {
+        confs.style.display = 'none';
+      }, 2000);
+
       audioController.match(); // Play match sound
       monkeyImage.src = './assets/monkey/monkey-doing-a-flip.gif';
       setTimeout(function() {
