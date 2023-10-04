@@ -62,6 +62,24 @@ body {
   z-index: 4;
 }
 
+#monkey {
+  position: absolute;
+  width: 250px;
+  height: 400px;
+  z-index: 4;
+  bottom: 40px;
+  left: -80px;
+}
+
+@media (max-width: 767px) {
+  #monkey {
+    width: 200px;
+    height: 200px;
+    left: -45px;
+    bottom: 35px;
+  }
+}
+
 #video-container {
   position: absolute; 
   top: 0;
@@ -193,6 +211,19 @@ body {
   animation: heartbeat 1.5s infinite;
 }
 
+#memory--settings-tutorial {
+  width:100%;
+  margin-bottom:16px;
+  font-size:18px;
+  background: white;
+  color: black;
+  height:50px;
+  text-align: center;
+  font-family: 'samurai';
+  border-radius:5px;
+  border:2px solid #ccc;
+  cursor: pointer;
+}
 #memory--settings-grid option {
   padding-top:5px;
   padding-bottom:5px;
@@ -346,6 +377,19 @@ body {
   background-color: #2980b9; /* Change the hover background color */
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.try-again{
+  display: none;
+  height: 40px;
+  width: 200px;
+  border-radius: 50px;
+  animation: heartbeat 1.5s infinite;
+}
 
 .back.card-1 {
   background-image: url(../images/fruits/apple.gif);
@@ -453,7 +497,13 @@ body {
 #modal-video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
+}
+
+@media screen and (max-width: 480px) {
+  #modal-video {
+    object-fit: cover;
+  }
 }
 
 /* Define the bounce animation */

@@ -234,6 +234,10 @@ class AudioController {
               var message = getEndGameMessage(); // Call a function to handle the game over state
               document.getElementById('memory--end-game-message').textContent = message;
               document.getElementById("memory--end-game-modal").classList.toggle('show');
+
+              // Show the "Try Again" button
+              var tryAgainButton = document.getElementById('try-again-button');
+              tryAgainButton.style.display = 'block';
             }
           }
 
@@ -261,8 +265,16 @@ class AudioController {
       }.bind(this), 1000);
     }
 
+    var monkeyImage = document.getElementById('monkey');
+    // Store the original image source
+    var originalImageSrc = monkeyImage.src;
+
     if (status.code == 2 ) {
       audioController.match(); // Play match sound
+      monkeyImage.src = './assets/monkey/monkey-doing-a-flip.gif';
+      setTimeout(function() {
+        monkeyImage.src = originalImageSrc; // Change the image back to the original source
+      }, 2000);
     }
 
     if (status.code == 3 ) {
@@ -298,6 +310,16 @@ class AudioController {
       }
     }
   };
+
+  // Handle the "Try Again" 
+  var tryAgainButton = document.getElementById('try-again-button');
+  tryAgainButton.addEventListener('click', function () {
+    // Reset the game here
+    handleSettingsSubmission(new Event('click'));
+  
+    // Hide the "Try Again" button
+    tryAgainButton.style.display = 'none';
+  });
 
   let level = 1;
   var gameLevel = ["3x4", "4x5", "5x6", "6x7"];

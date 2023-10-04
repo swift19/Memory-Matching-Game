@@ -32,7 +32,7 @@
               <option value="6x7">Your Insane!</option>
             </select> -->
             <input id="memory--settings-reset" type="submit" value="Start New Game" />
-            <input id="memory--settings-reset" type="submit" value="Tutorial" />
+            <input id="memory--settings-tutorial" type="submit" value="Tutorial" />
           </form>
         </div>
       </section>
@@ -43,6 +43,9 @@
         <div class="wrapper">
           <h2 id="memory--end-game-message"></h2>
           <h3 id="memory--end-game-score"></h3>
+          <div class="container">
+            <button id="try-again-button" class="try-again">Try Again</button>
+          </div>
         </div>
       </div>
     </section>
@@ -65,6 +68,7 @@
       <div id="level">Level: <span id="lvl"></span></div>
       <ul id="memory--cards">
       </ul>
+      <img id="monkey" src="./assets/monkey/monkey.png" alt="monkey"/>
       <img id="qr-code" src="./images/qr-code.png" alt="QR Code" />
       <div class="lower-left">
         <button id="mute-audio" class="transparent-button">🔇 Mute</button>
