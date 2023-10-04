@@ -16,6 +16,8 @@ class AudioController {
     // this.gameOverSound = new Audio('https://github.com/swift19/Memory-Matching-Game/blob/main/assets/Audio/gameOver.wav');
 
     this.bgMusic = new Audio('assets/Audio/bg-music.wav');
+    this.bgMusic2 = new Audio('assets/Audio/happy-upbeat.wav'); 
+    this.bgMusic3 = new Audio('assets/Audio/kids-tune.wav');
     this.flipSound = new Audio('assets/Audio/flip.wav');
     this.matchSound = new Audio('assets/Audio/match.wav');
     this.victorySound = new Audio('assets/Audio/victory.wav');
@@ -23,14 +25,35 @@ class AudioController {
     
     this.bgMusic.volume = 0.5;
     this.bgMusic.loop = true;
+    this.bgMusic2.volume = 0.5;
+    this.bgMusic2.loop = true;
+    this.bgMusic3.volume = 0.5;
+    this.bgMusic3.loop = true;
     this.isMuted = false; // Add a property to track mute state
   }
-  startMusic() {
-    this.bgMusic.play();
+  startMusic(sound) {
+    var sound = sound + 1;
+    console.log("Soundtrack change by level here" , sound)
+    if(sound === 2) {
+      this.bgMusic2.play();
+    } else if(sound === 3) {
+      this.bgMusic3.play();
+    } else {
+      this.bgMusic.play();
+    }
   }
   stopMusic() {
-    this.bgMusic.pause();
-    this.bgMusic.currentTime = 0;
+    var lvl = +document.getElementById("lvl").textContent;
+    if(lvl === 2) {
+      this.bgMusic2.pause();
+      this.bgMusic2.currentTime = 0;
+    } else if(lvl === 3) {
+      this.bgMusic3.pause();
+      this.bgMusic3.currentTime = 0;
+    } else {
+      this.bgMusic.pause();
+      this.bgMusic.currentTime = 0;
+    }
   }
   flip() {
     this.flipSound.play();
@@ -49,20 +72,34 @@ class AudioController {
 
   mute() {
     this.isMuted = true;
-    this.bgMusic.muted = true;
     this.flipSound.muted = true;
     this.matchSound.muted = true;
     this.victorySound.muted = true;
     this.gameOverSound.muted = true;
+    var lvl = +document.getElementById("lvl").textContent;
+    if(lvl === 2) {
+      this.bgMusic2.muted = true;
+    } else if(lvl === 3) {
+      this.bgMusic3.muted = true;
+    } else {
+      this.bgMusic.muted = true;
+    }
   }
 
   unmute() {
     this.isMuted = false;
-    this.bgMusic.muted = false;
     this.flipSound.muted = false;
     this.matchSound.muted = false;
     this.victorySound.muted = false;
     this.gameOverSound.muted = false;
+    var lvl = +document.getElementById("lvl").textContent;
+    if(lvl === 2) {
+      this.bgMusic2.muted = false;
+    } else if(lvl === 3) {
+      this.bgMusic3.muted = false;
+    } else {
+      this.bgMusic.muted = false;
+    }
   }
 }
 
@@ -129,15 +166,16 @@ class AudioController {
       flipAllCardsAndFreeze(cards.length);
 
       level = 0;
-      document.getElementById('lvl').innerText = level + 1;
+      document.getElementById('lvl').innerText = 1;
     }
 
   };
   reset.addEventListener('click', handleSettingsSubmission);
 
   // Function to flip all cards and freeze them for 20 seconds
-  function flipAllCardsAndFreeze(cards) {
-    audioController.startMusic(); // Add background music
+  function flipAllCardsAndFreeze(cards , level) {
+
+    audioController.startMusic(level) // Add background music
     var cards = document.querySelectorAll('.flip-container');
     var flipDuration = 150; // Duration (in milliseconds) for flipping each card
     var freezeDurationPerCard = 3000; // Duration (in milliseconds) for freezing each card
@@ -266,9 +304,10 @@ class AudioController {
   var nextLevel = function () {
     level ++;
     console.log(level)
+    
     countdownTimer = startCountdown(0, true);
 
-    var grid = gameLevel[level - 1];
+    var grid = gameLevel[level-1];
     console.log("grid level",grid)
     var gridValues = grid.split('x');
 
@@ -282,7 +321,7 @@ class AudioController {
       buildLayout($.cards, $.settings.rows, $.settings.columns);
   
       // Flip all cards before starting the game
-      flipAllCardsAndFreeze(cards.length);
+      flipAllCardsAndFreeze(cards.length, level);
       document.getElementById('lvl').innerText = level+1;
     }
   }
