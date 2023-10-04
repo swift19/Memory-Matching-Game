@@ -234,6 +234,10 @@ class AudioController {
               var message = getEndGameMessage(); // Call a function to handle the game over state
               document.getElementById('memory--end-game-message').textContent = message;
               document.getElementById("memory--end-game-modal").classList.toggle('show');
+
+              // Show the "Try Again" button
+              var tryAgainButton = document.getElementById('try-again-button');
+              tryAgainButton.style.display = 'block';
             }
           }
 
@@ -298,6 +302,16 @@ class AudioController {
       }
     }
   };
+
+  // Handle the "Try Again" 
+  var tryAgainButton = document.getElementById('try-again-button');
+  tryAgainButton.addEventListener('click', function () {
+    // Reset the game here
+    handleSettingsSubmission(new Event('click'));
+  
+    // Hide the "Try Again" button
+    tryAgainButton.style.display = 'none';
+  });
 
   let level = 1;
   var gameLevel = ["3x4", "4x5", "5x6", "6x7"];
