@@ -62,6 +62,24 @@ body {
   z-index: 4;
 }
 
+#monkey {
+  position: absolute;
+  width: 250px;
+  height: 400px;
+  z-index: 4;
+  bottom: 40px;
+  left: -80px;
+}
+
+@media (max-width: 767px) {
+  #monkey {
+    width: 200px;
+    height: 200px;
+    left: -45px;
+    bottom: 35px;
+  }
+}
+
 #video-container {
   position: absolute; 
   top: 0;

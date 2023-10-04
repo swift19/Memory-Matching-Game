@@ -265,8 +265,16 @@ class AudioController {
       }.bind(this), 1000);
     }
 
+    var monkeyImage = document.getElementById('monkey');
+    // Store the original image source
+    var originalImageSrc = monkeyImage.src;
+
     if (status.code == 2 ) {
       audioController.match(); // Play match sound
+      monkeyImage.src = './assets/monkey/monkey-doing-a-flip.gif';
+      setTimeout(function() {
+        monkeyImage.src = originalImageSrc; // Change the image back to the original source
+      }, 2000);
     }
 
     if (status.code == 3 ) {
