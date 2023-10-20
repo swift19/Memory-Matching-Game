@@ -715,11 +715,39 @@ animation-fill-mode: forwards;}
 #imageDisplay{
   display: none;
   position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.5s;
+  z-index: 100;
+}
+
+#tutorial-modal{
+  display: none;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: transform 0.5s;
   z-index: 100;
+}
+
+#close-icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: red;
+}
+
+.icon-holder {
+  position: absolute;
+  z-index: 100;
+  border-radius: 100px;
+  background: white;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  /* align-items: center; Vertically center */
 }
 
 

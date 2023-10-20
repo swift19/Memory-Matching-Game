@@ -172,6 +172,32 @@ class AudioController {
   };
   reset.addEventListener('click', handleSettingsSubmission);
 
+  // play video tutorial
+  var tutorial = document.getElementById('tutorial-modal');
+  var tutorialBtn = document.getElementById('memory--settings-tutorial');
+  var tutorialVideo = document.getElementById('tutorial-video');
+  var handleTutorialSubmission = function (event) {
+    event.preventDefault();
+    // Make the video visible
+    tutorial.style.display = "block";
+    tutorialVideo.play();
+  };
+  tutorialBtn.addEventListener('click', handleTutorialSubmission);
+
+  // Get a reference to the close icon element
+  var closeIcon = document.getElementById('close-icon');
+  // Define the click event handler function
+  function handleIconClick() {
+    // Pause the video
+    tutorialVideo.pause();
+    
+    // Reset the video to the beginning
+    tutorialVideo.currentTime = 0;
+    tutorial.style.display = "none";
+  }
+  // Attach the click event listener to the close icon
+  closeIcon.addEventListener('click', handleIconClick);
+
   // Function to flip all cards and freeze them for 20 seconds
   function flipAllCardsAndFreeze(cards , level) {
 
