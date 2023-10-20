@@ -69,6 +69,7 @@ body {
   z-index: 4;
   bottom: 40px;
   left: -80px;
+  z-index: 1;
 }
 
 @media (max-width: 767px) {
@@ -242,6 +243,7 @@ body {
   list-style-type: none;
   list-style-image: none;
   position:relative;
+  z-index: 2;
 }
 /* entire container, keeps perspective */
 .flip-container {
