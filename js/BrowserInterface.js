@@ -211,7 +211,7 @@ class AudioController {
   }
 
   var countdownTimer;
-  var countdownDuration = 120; // Set the countdown duration in seconds
+  var countdownDuration = 10; // Set the countdown duration in seconds
   var countdownInterval;
 
   function startCountdown(duration, isButtonClicked) {
@@ -373,9 +373,10 @@ class AudioController {
   let level = 1;
   var gameLevel = ["3x4", "4x5", "5x6", "6x7"];
   var nextLevel = function () {
+    countdownDuration += 10;
     level ++;
     console.log(level)
-    
+    console.log(countdownDuration)
     countdownTimer = startCountdown(0, true);
 
     var grid = gameLevel[level-1];
