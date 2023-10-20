@@ -710,6 +710,16 @@ animation-fill-mode: forwards;}
   width: 50px;
 }
 
+#imageDisplay{
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.5s;
+  z-index: 100;
+}
+
 
 /** Matching Cards **/
 /**

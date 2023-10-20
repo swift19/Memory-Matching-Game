@@ -267,21 +267,62 @@ class AudioController {
 
     var monkeyImage = document.getElementById('monkey');
     // Store the original image source
-    var originalImageSrc = monkeyImage.src;
+    // var originalImageSrc = monkeyImage.src;
 
     if (status.code == 2 ) {
       // fall banana
-      const confs = document.getElementById("banana_canvas");
-      confs.style.display = 'block';
-      setTimeout(function() {
-        confs.style.display = 'none';
-      }, 2000);
+      // const confs = document.getElementById("banana_canvas");
+      // confs.style.display = 'block';
+      // setTimeout(function() {
+      //   confs.style.display = 'none';
+      // }, 2000);
 
       audioController.match(); // Play match sound
-      monkeyImage.src = './assets/monkey/monkey-doing-a-flip.gif';
+      // monkeyImage.src = './assets/monkey/monkey-doing-a-flip.gif';
+      // setTimeout(function() {
+      //   monkeyImage.src = originalImageSrc; // Change the image back to the original source
+      // }, 2000);
+
+      // Array of image file names in the "images/success-images" folder
+      const imageArray = [
+        'amazing.png',
+        'awesome.png',
+        'good_jop.png',
+        'great.png',
+        'keep_going.png',
+        'nice_one.png',
+        'well_done.png',
+        'wow.png'
+      ];
+
+      const randomIndex = Math.floor(Math.random() * imageArray.length);
+      const randomImage = imageArray[randomIndex];
+      const imageElement = document.getElementById('imageDisplay');
+      imageElement.src = 'images/success-images/' + randomImage;
+      
+      // Display the hidden image
+      imageElement.style.display = 'block';
+
+      // Apply an animation by changing the scale
+      imageElement.style.transform = 'translate(-50%, -50%) scale(1.5)';
+      
+      // After a delay, return the image to its normal size
       setTimeout(function() {
-        monkeyImage.src = originalImageSrc; // Change the image back to the original source
-      }, 2000);
+          imageElement.style.transform = 'translate(-50%, -50%) scale(1)';
+      }, 500); // 500ms = 0.5 seconds
+
+      // execute confetti every end of the level
+      const confs = document.getElementById("drawing_canvas");
+      confs.style.zIndex = "100";
+      initDrawingCanvas();
+      requestAnimationFrame(loop);
+      
+
+      // Hide the image after 1.5 seconds
+      setTimeout(function() {
+        imageElement.style.display = 'none';
+        confs.style.zIndex = "0";
+    }, 1500); // 1500ms = 1.5 seconds
     }
 
     if (status.code == 3 ) {
